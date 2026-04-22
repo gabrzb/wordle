@@ -22,31 +22,32 @@ class Board extends StatelessWidget {
             (i, word) => MapEntry(
               i,
               Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: word.letters
-                      .asMap()
-                      .map(
-                        (j, letter) => MapEntry(
-                          j, 
-                          FlipCard(
-                            key: FlipCardKeys[i][j],
-                            flipOnTouch: false,
-                            direction: FlipDirection.VERTICAL,
-                            front: BoardTile(
-                              letter: Letter(
-                                val: letter.val,
-                                status: LetterStatus.initial,
-                              ),
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: word.letters
+                    .asMap()
+                    .map(
+                      (j, letter) => MapEntry(
+                        j,
+                        FlipCard(
+                          key: FlipCardKeys[i][j],
+                          flipOnTouch: false,
+                          direction: FlipDirection.VERTICAL,
+                          front: BoardTile(
+                            letter: Letter(
+                              val: letter.val,
+                              status: LetterStatus.initial,
                             ),
-                            back: BoardTile(letter: letter),
-                          )
+                          ),
+                          back: BoardTile(letter: letter),
                         ),
-                      )
-                      .values
-                      .toList(),
-                ),
-              )
+                      ),
+                    )
+                    .values
+                    .toList(),
+              ),
+            ),
           )
+          .values
           .toList(),
     );  
   }

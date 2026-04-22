@@ -1,7 +1,5 @@
-import 'dart:math';
-
 import 'package:equatable/equatable.dart';
-import 'package:wordle/wordle/wordle.dart';
+import 'package:wordle/wordle/models/letter_model.dart';
 
 class Word extends Equatable {
   const Word({ required this.letters });
@@ -19,7 +17,7 @@ class Word extends Equatable {
   void addLetter(String letter) {
     final currentIndex = letters.indexWhere((e) => e.val.isEmpty);
     if (currentIndex != -1) {
-      letters[currentIndex] = Letter(val: val);
+      letters[currentIndex] = Letter(val: letter);
     }
   }
 

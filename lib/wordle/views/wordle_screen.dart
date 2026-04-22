@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:flip_card/flip_card.dart';
 import 'package:flutter/material.dart';
 import 'package:wordle/app/app_colors.dart';
 import 'package:wordle/wordle/models/letter_model.dart';
@@ -56,12 +57,12 @@ class _WordleScreenState extends State<WordleScreen> {
       body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Board(board: board, FlipCardKeys: _flipCardKeys),
+            Board(board: _board, FlipCardKeys: _flipCardKeys),
             const SizedBox(height: 80),
             Keyboard(
-              onKeyTapped: onKeyTapped, 
-              onDeleteTapped: onDeleteTapped, 
-              onEnterTapped: onEnterTapped,
+              onKeyTapped: _onKeyTapped,
+              onDeleteTapped: _onDeleteTapped,
+              onEnterTapped: _onEnterTapped,
               letters: _keyboardLetters,
             )
           ],
@@ -137,7 +138,7 @@ class _WordleScreenState extends State<WordleScreen> {
             style: TextStyle(color: Colors.white),
           ),
           action: SnackBarAction(
-            onPressed: _restart,
+            onPressed: restart,
             textColor: Colors.white,
             label: 'Jogar novamente',
           )
@@ -150,12 +151,12 @@ class _WordleScreenState extends State<WordleScreen> {
           dismissDirection: DismissDirection.none,
           duration: const Duration(days: 1),
           backgroundColor: Colors.redAccent[200],
-          content: const Text(
+          content: Text(
             'Você perdeu! Palavra correta: ${_solution.wordString}',
             style: const TextStyle(color: Colors.white),
           ),
           action: SnackBarAction(
-            onPressed: _restart,
+            onPressed: restart,
             textColor: Colors.white,
             label: 'Jogar novamente',
           )

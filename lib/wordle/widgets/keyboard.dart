@@ -45,14 +45,15 @@ class Keyboard extends StatelessWidget {
                   return _KeyboardButton(
                     onTap: () => onKeyTapped(letter),
                     letter: letter,
-                    backgroundColor: letterKey != Letter.empty() 
-                        ? letterKey.backgroundColor 
+                    backgroundColor: letterKey != Letter.empty()
+                        ? letterKey.backgroundColor
                         : Colors.grey,
                   );
                 },
-              )
+              ).toList(),
             ),
-          ),
+          )
+          .toList(),
     );
   }
 }
