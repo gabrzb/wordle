@@ -90,6 +90,17 @@ class _WordleScreenState extends State<WordleScreen> {
     if (
       _gameStatus == GameStatus.playing && !_currentWord!.letters.contains(Letter.empty())
     ) {
+      final currentGuess = _currentWord!.wordString;
+      if (!isValidFiveLetterWord(currentGuess)) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            duration: Duration(seconds: 2),
+            content: Text('Palavra não encontrada na lista.'),
+          ),
+        );
+        return;
+      }
+
       _gameStatus = GameStatus.submitting;
 
       for (var i = 0; i < _currentWord!.letters.length; i++) {
