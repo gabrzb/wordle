@@ -7,14 +7,9 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Wordle App',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-      ),
-      home: const Scaffold(
-        body: Center(
-          child: Text('Hello World'),
-        ),
-      ),
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData.dark().copyWith(scaffoldBackgroundColor: Colors.black),
+      home: const WordleScreen(),
     );
   }
 }
