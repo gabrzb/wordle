@@ -137,6 +137,7 @@ class _WordleScreenState extends State<WordleScreen> {
   }
 
   void _checkIfWinOrLoss() {
+    final solutionDisplayWord = getDisplayWordForResult(_solution.wordString);
     if (_currentWord!.wordString == _solution.wordString) {
       _gameStatus = GameStatus.won;
       ScaffoldMessenger.of(context).showSnackBar(
@@ -144,9 +145,9 @@ class _WordleScreenState extends State<WordleScreen> {
           dismissDirection: DismissDirection.none,
           duration: const Duration(days: 1),
           backgroundColor: correctColor,
-          content: const Text(
-            'Você venceu!',
-            style: TextStyle(color: Colors.white),
+          content: Text(
+            'Você venceu! Palavra correta: $solutionDisplayWord',
+            style: const TextStyle(color: Colors.white),
           ),
           action: SnackBarAction(
             onPressed: restart,
@@ -163,7 +164,7 @@ class _WordleScreenState extends State<WordleScreen> {
           duration: const Duration(days: 1),
           backgroundColor: Colors.redAccent[200],
           content: Text(
-            'Você perdeu! Palavra correta: ${_solution.wordString}',
+            'Você perdeu! Palavra correta: $solutionDisplayWord',
             style: const TextStyle(color: Colors.white),
           ),
           action: SnackBarAction(
